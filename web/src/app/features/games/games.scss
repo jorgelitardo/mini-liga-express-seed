@@ -1,0 +1,103 @@
+.games-container {
+    padding: 20px;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+  
+  .modal-box {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .form-group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+  
+    label {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+  
+    select,
+    input {
+      padding: 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .table {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  
+    th {
+      background: #212529;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+  
+    td {
+      vertical-align: middle;
+      font-size: 14px;
+    }
+  
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+  }
+  .table {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  
+    th {
+      background: #212529;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+  
+    td {
+      vertical-align: middle;
+      font-size: 14px;
+    }
+  
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+  
+    .badge {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  }
+  

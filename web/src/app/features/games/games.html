@@ -1,0 +1,179 @@
+<div class="games-container">
+  <h3 class="mb-3 text-center">
+    🏆 <strong>Gestión de Partidos</strong> ⚽
+  </h3>
+
+  <h5 class="mb-4 text-secondary">
+    📄 <strong>Partidos Registrados</strong>
+  </h5>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary" (click)="openModal()">➕ Nuevo Partido</button>
+  </div>
+
+  <table class="table table-striped table-hover" *ngIf="partidos.length > 0; else noData">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>#</th>
+        <th>Local</th>
+        <th>Visitante</th>
+        <th>Resultado</th>
+        <th>Fecha</th>
+        <th>Estadio</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody class="text-center align-middle">
+      <tr *ngFor="let p of partidos; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ p.home_team_name || p.home_team_id }}</td>
+        <td>{{ p.away_team_name || p.away_team_id }}</td>
+        <td>
+          <ng-container *ngIf="p.home_score != null && p.away_score != null; else pendiente">
+            <strong>{{ p.home_score }}</strong> - <strong>{{ p.away_score }}</strong>
+          </ng-container>
+          <ng-template #pendiente>—</ng-template>
+        </td>
+        <td>
+          {{ p.match_date ? (p.match_date | date: 'dd/MM/yyyy') : '—' }}
+        </td>
+        <td>
+          {{ p.stadium ? ('🏟️ ' + p.stadium) : '—' }}
+        </td>
+        <td>
+          <span
+            [ngClass]="{
+              'badge bg-success': p.status === 'Finalizado',
+              'badge bg-warning text-dark': p.status === 'Pendiente'
+            }"
+          >
+            {{ p.status }}
+          </span>
+
+          <!-- Botón visible solo si el partido está pendiente -->
+          <button
+            *ngIf="p.status === 'Pendiente'"
+            class="btn btn-sm btn-outline-primary ms-2"
+            (click)="openResultadoModal(p)"
+          >
+            ⚙️ Registrar Resultado
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p class="text-center text-muted">No hay partidos registrados aún.</p>
+  </ng-template>
+
+  <!-- 🌟 MODAL CREAR PARTIDO -->
+  <div class="modal fade" id="modalPartido" tabindex="-1" aria-labelledby="modalPartidoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form (ngSubmit)="crearPartido()" #partidoForm="ngForm">
+          <div class="modal-header bg-dark text-white">
+            <h5 class="modal-title" id="modalPartidoLabel">➕ Nuevo Partido</h5>
+            <button type="button" class="btn-close btn-close-white" (click)="closeModal()"></button>
+          </div>
+
+          <div class="modal-body">
+            <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+            <div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+
+            <div class="mb-3">
+              <label class="form-label">Equipo Local:</label>
+              <select class="form-select" [(ngModel)]="partido.home_team_id" name="home_team_id" required>
+                <option value="">Seleccione...</option>
+                <option *ngFor="let e of equipos" [value]="e.id">{{ e.name }}</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Equipo Visitante:</label>
+              <select class="form-select" [(ngModel)]="partido.away_team_id" name="away_team_id" required>
+                <option value="">Seleccione...</option>
+                <option *ngFor="let e of equipos" [value]="e.id">{{ e.name }}</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Fecha del Partido:</label>
+              <input type="date" class="form-control" [(ngModel)]="partido.match_date" name="match_date" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Estadio (opcional):</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="partido.stadium"
+                name="stadium"
+                placeholder="Ej: Monumental"
+              />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⚽ MODAL RESULTADO -->
+  <div class="modal fade" id="modalResultado" tabindex="-1" aria-labelledby="modalResultadoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form (ngSubmit)="guardarResultado()" #resultadoForm="ngForm">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title" id="modalResultadoLabel">⚽ Registrar Resultado</h5>
+            <button type="button" class="btn-close btn-close-white" (click)="closeResultadoModal()"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Partido:</label>
+              <p>
+                <strong>{{ partidoSeleccionado?.home_team_name }}</strong> vs
+                <strong>{{ partidoSeleccionado?.away_team_name }}</strong>
+              </p>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label class="form-label">Goles Local</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="resultado.home_score"
+                  name="home_score"
+                  required
+                  min="0"
+                />
+              </div>
+              <div class="col">
+                <label class="form-label">Goles Visitante</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="resultado.away_score"
+                  name="away_score"
+                  required
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeResultadoModal()">Cancelar</button>
+            <button type="submit" class="btn btn-success">Guardar Resultado</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
