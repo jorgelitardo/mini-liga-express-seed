@@ -1,22 +1,57 @@
-# Node
+# ==========================================
+# 🟢 NODE / ANGULAR
+# ==========================================
 node_modules/
 dist/
 www/
-# PHP / Laravel
-/vendor
-.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Angular build
+/web/dist/
+/web/node_modules/
+/web/.angular/cache/
+
+# ==========================================
+# 🟣 PHP / LARAVEL
+# ==========================================
+/vendor/
+/.env
 .phpunit.result.cache
 Homestead.yaml
 Homestead.json
 /storage/*.key
 /public/storage
-# OS
+/storage/logs/
+/bootstrap/cache/
+
+# ==========================================
+# 🟠 SYSTEM / OS
+# ==========================================
 .DS_Store
 Thumbs.db
-# IDE
+
+# ==========================================
+# 🟡 IDE / EDITORS
+# ==========================================
 .idea/
 .vscode/
-# Generated
+*.swp
+
+# ==========================================
+# 🔵 LOGS / TEMP
+# ==========================================
 *.log
 *.sqlite
 *.zip
+*.tar
+*.gz
+
+# ==========================================
+# ⚪ CUSTOM / PROJECT SPECIFIC
+# ==========================================
+/uploads/
+/tmp/
+/scripts/*.log
