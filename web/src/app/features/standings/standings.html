@@ -1,0 +1,45 @@
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-header bg-success text-white text-center fs-5 fw-bold">
+        🏆 Tabla de Posiciones
+      </div>
+      <div class="card-body bg-light">
+        <table *ngIf="standings.length > 0; else loading" class="table table-hover align-middle text-center shadow-sm">
+          <thead class="table-dark text-uppercase">
+            <tr>
+              <th>#</th>
+              <th>Equipo</th>
+              <th>J</th>
+              <th>G</th>
+              <th>E</th>
+              <th>P</th>
+              <th>GF</th>
+              <th>GC</th>
+              <th>Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of standings; let i = index" [ngClass]="{'table-success': i === 0}">
+              <td>{{ i + 1 }}</td>
+              <td class="fw-semibold text-start ps-4">{{ s.team }}</td>
+              <td>{{ s.played }}</td>
+              <td>{{ s.wins }}</td>
+              <td>{{ s.draws }}</td>
+              <td>{{ s.losses }}</td>
+              <td class="text-success fw-bold">{{ s.goals_for }}</td>
+              <td class="text-danger fw-bold">{{ s.goals_against }}</td>
+              <td class="fw-bold">{{ s.points }}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <ng-template #loading>
+          <div class="text-center text-muted mt-3">
+            <div class="spinner-border text-success" role="status"></div>
+            <p class="mt-2">Cargando tabla de posiciones...</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  

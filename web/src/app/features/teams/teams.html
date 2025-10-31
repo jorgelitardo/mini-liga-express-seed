@@ -1,0 +1,47 @@
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-header bg-primary text-white text-center fs-5 fw-bold">
+        ⚽ Gestión de Equipos
+      </div>
+      <div class="card-body bg-light">
+        <div *ngIf="errorMsg" class="alert alert-danger text-center">
+          {{ errorMsg }}
+        </div>
+  
+        <table *ngIf="teams.length > 0; else loading" class="table table-striped align-middle text-center shadow-sm">
+          <thead class="table-dark text-uppercase">
+            <tr>
+              <th>#</th>
+              <th>Equipo</th>
+              <th>Goles a Favor</th>
+              <th>Goles en Contra</th>
+              <th>Diferencia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let team of teams; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td class="fw-semibold text-start ps-4">{{ team.name }}</td>
+              <td class="text-success fw-bold">{{ team.goals_for }}</td>
+              <td class="text-danger fw-bold">{{ team.goals_against }}</td>
+              <td [ngClass]="{
+                  'text-success fw-bold': team.goals_for - team.goals_against > 0,
+                  'text-warning fw-bold': team.goals_for - team.goals_against === 0,
+                  'text-danger fw-bold': team.goals_for - team.goals_against < 0
+                }">
+                {{ team.goals_for - team.goals_against }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <ng-template #loading>
+          <div class="text-center text-muted mt-3">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2">Cargando equipos...</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  

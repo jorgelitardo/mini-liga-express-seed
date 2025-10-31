@@ -1,0 +1,148 @@
+/* === Estilos globales MiniLiga === */
+
+/* Paleta de colores */
+:root {
+    --azul-oscuro: #0d1b2a;
+    --azul-secundario: #1b263b;
+    --celeste: #00b4d8;
+    --verde-cesped: #06d6a0;
+    --gris-claro: #f8f9fa;
+    --gris-texto: #adb5bd;
+    --blanco: #ffffff;
+  }
+  
+  /* Fondo general */
+  body {
+    background-color: var(--gris-claro);
+    color: var(--azul-oscuro);
+    font-family: "Poppins", "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navbar */
+  .navbar-header,
+  .navbar-brand-box {
+    background-color: var(--azul-oscuro) !important;
+    color: var(--blanco);
+  }
+  
+  .navbar a,
+  .navbar-nav .nav-link {
+    color: var(--blanco) !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .navbar a:hover {
+    color: var(--verde-cesped) !important;
+  }
+  
+  /* Encabezados de sección */
+  h2,
+  .card-header {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Tarjetas */
+  .card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: none;
+  }
+  
+  .card-header {
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+  }
+  
+  /* Tablas */
+  .table {
+    background: var(--blanco);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .table thead {
+    background-color: var(--azul-secundario);
+    color: var(--blanco);
+  }
+  
+  .table thead th {
+    border: none;
+    text-align: center;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+  }
+  
+  .table tbody td {
+    vertical-align: middle;
+    border-color: #dee2e6;
+    font-size: 0.9rem;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f3f5;
+  }
+  
+  /* Posiciones destacadas */
+  .table-success td {
+    background-color: #d8f3dc !important;
+    color: #1b4332 !important;
+  }
+  
+  /* Diferencia de goles */
+  .text-success {
+    color: #28a745 !important;
+  }
+  
+  .text-warning {
+    color: #ffc107 !important;
+  }
+  
+  .text-danger {
+    color: #dc3545 !important;
+  }
+  
+  /* Spinner */
+  .spinner-border {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  /* Footer opcional */
+  footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    font-size: 0.9rem;
+    border-top: 4px solid var(--verde-cesped);
+  }
+  
+  /* Animación sutil en tablas */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  tbody tr {
+    animation: fadeInUp 0.3s ease-in-out;
+  }
+  
+  /* Iconos decorativos en títulos */
+  .card-header::before {
+    content: "🏆 ";
+    font-size: 1.1rem;
+  }
+  
