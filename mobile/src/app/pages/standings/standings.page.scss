@@ -1,0 +1,55 @@
+ion-content {
+    --background: #f8f9fa;
+    color: #000;
+  }
+  
+  /* Tarjeta principal */
+  ion-card {
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    margin: 10px;
+  }
+  
+  /* Encabezado verde */
+  ion-card-header {
+    background: #007b33;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+  
+  /* Tabla */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9rem;
+  }
+  
+  thead {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  tr.top {
+    background-color: #eaf8e5;
+    font-weight: bold;
+  }
+  
+  tbody tr:hover {
+    background-color: #f2f2f2;
+  }
+  

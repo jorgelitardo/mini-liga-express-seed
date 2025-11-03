@@ -1,0 +1,59 @@
+/* === Tabla clara === */
+.tabla-header {
+    font-weight: bold;
+    background: #f8f9fa;
+    color: #212529;
+    border-bottom: 2px solid #007bff;
+  }
+  
+  .tabla-row {
+    background: #ffffff;
+    color: #000;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .tabla-row:hover {
+    background: #f1f3f5;
+  }
+  
+  /* === Modal === */
+  ion-modal::part(backdrop) {
+    background: rgba(0, 0, 0, 0.35);
+  }
+  
+  ion-modal::part(content) {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 420px;
+    margin: auto;
+    animation: fadeIn 0.25s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* === Toolbar y botones === */
+  ion-toolbar {
+    --background: #007bff;
+    --color: #fff;
+  }
+  
+  ion-item {
+    --background: #fff;
+    --color: #000;
+  }
+  
+  ion-button[color="success"] {
+    --background: #28a745;
+    font-weight: bold;
+  }
+  

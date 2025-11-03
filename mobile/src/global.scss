@@ -1,0 +1,80 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+/* 🧭 Ajuste global para que el contenido no se monte sobre el header */
+/* ===== FIX HEADER Y CONTENIDO ===== */
+
+/* El toolbar queda fijo */
+ion-header, ion-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: none;
+  }
+  
+  /* El contenido empieza debajo del toolbar */
+  ion-content {
+    --padding-top: 56px; /* altura del toolbar */
+    background: #f8f9fa;
+  }
+  
+  /* Evita doble margen en ion-card */
+  ion-card {
+    margin-top: 0;
+  }
+  
+  /* Botones del header */
+  ion-toolbar ion-buttons ion-button {
+    color: rgb(22, 192, 223);
+    font-weight: 600;
+  }
+  
+  ion-toolbar ion-buttons ion-button.router-link-active {
+    border-bottom: 2px solid #ffc107;
+    color: #ffc107;
+  }
+  
+  /* ===== AJUSTES RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    ion-toolbar ion-buttons ion-button {
+      font-size: 0.9rem;
+      padding: 0 4px;
+    }
+  }
+  

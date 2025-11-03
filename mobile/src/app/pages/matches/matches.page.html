@@ -1,0 +1,172 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title class="fw-bold text-dark">🏆 Gestión de Partidos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="openNew()">
+        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+        Nuevo Partido
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>⚽ Partidos Registrados</ion-card-title>
+    </ion-card-header>
+
+    <ion-grid>
+      <ion-row class="tabla-header">
+        <ion-col size="1">#</ion-col>
+        <ion-col size="3">Local</ion-col>
+        <ion-col size="3">Visitante</ion-col>
+        <ion-col size="2">Resultado</ion-col>
+        <ion-col size="2">Estado</ion-col>
+        <ion-col size="1"></ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let p of partidos; let i = index" class="tabla-row">
+        <ion-col size="1">{{ i + 1 }}</ion-col>
+        <ion-col size="3">{{ p.home_name }}</ion-col>
+        <ion-col size="3">{{ p.away_name }}</ion-col>
+        <ion-col size="2">
+          <span *ngIf="p.home_score != null && p.away_score != null" class="fw-bold">
+            {{ p.home_score }} - {{ p.away_score }}
+          </span>
+          <span *ngIf="p.home_score == null && p.away_score == null">—</span>
+        </ion-col>
+        <ion-col size="2">
+          <ion-badge [color]="p.status === 'Finalizado' ? 'success' : 'warning'">
+            {{ p.status }}
+          </ion-badge>
+        </ion-col>
+        <ion-col size="1" class="text-center">
+          <ion-button
+            *ngIf="p.status === 'Pendiente'"
+            size="small"
+            fill="outline"
+            color="primary"
+            (click)="abrirModalResultado(p)"
+          >
+            ⚙️ Registrar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <!-- ✅ Modal Nuevo Partido -->
+  <ion-modal [isOpen]="isNewOpen" (willDismiss)="closeNew()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Nuevo Partido</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="closeNew()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">Equipo Local</ion-label>
+          <ion-select [(ngModel)]="nuevo.home_team_id" placeholder="Seleccione...">
+            <ion-select-option
+              *ngFor="let e of equipos"
+              [value]="e.id"
+              [disabled]="e.id === nuevo.away_team_id"
+            >
+              {{ e.name }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Equipo Visitante</ion-label>
+          <ion-select [(ngModel)]="nuevo.away_team_id" placeholder="Seleccione...">
+            <ion-select-option
+              *ngFor="let e of equipos"
+              [value]="e.id"
+              [disabled]="e.id === nuevo.home_team_id"
+            >
+              {{ e.name }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Fecha del Partido</ion-label>
+          <ion-datetime
+            presentation="date"
+            [(ngModel)]="nuevo.match_date"
+            placeholder="Selecciona fecha"
+          ></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Estadio (opcional)</ion-label>
+          <ion-input [(ngModel)]="nuevo.stadium" placeholder="Ej: Monumental"></ion-input>
+        </ion-item>
+
+        <ion-button
+          expand="block"
+          color="success"
+          class="ion-margin-top"
+          (click)="crearPartido()"
+          [disabled]="!nuevo.home_team_id || !nuevo.away_team_id"
+        >
+          Guardar Partido
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- ✅ Modal Registrar Resultado -->
+  <ion-modal [isOpen]="isResultOpen" (willDismiss)="cerrarModalResultado()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Registrar Resultado</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="cerrarModalResultado()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <h2 class="ion-text-center fw-bold">
+          {{ partidoSeleccionado?.home_name }} vs {{ partidoSeleccionado?.away_name }}
+        </h2>
+
+        <ion-item>
+          <ion-label position="stacked">{{ partidoSeleccionado?.home_name }}</ion-label>
+          <ion-input
+            type="number"
+            [(ngModel)]="resultado.home_score"
+            placeholder="Goles del local"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">{{ partidoSeleccionado?.away_name }}</ion-label>
+          <ion-input
+            type="number"
+            [(ngModel)]="resultado.away_score"
+            placeholder="Goles del visitante"
+          ></ion-input>
+        </ion-item>
+
+        <ion-button
+          expand="block"
+          color="success"
+          class="ion-margin-top"
+          (click)="guardarResultado()"
+          [disabled]="resultado.home_score == null || resultado.away_score == null"
+        >
+          Guardar Resultado
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

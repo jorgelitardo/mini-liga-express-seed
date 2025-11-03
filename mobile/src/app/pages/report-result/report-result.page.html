@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Resultados</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <ion-list *ngIf="resultados.length; else noData">
+      <ion-item *ngFor="let r of resultados">
+        <ion-label>
+          <h2>{{ r.equipoLocal }} vs {{ r.equipoVisitante }}</h2>
+          <p>Marcador: {{ r.resultado }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  
+    <ng-template #noData>
+      <ion-text color="medium">
+        <p class="ion-text-center">No hay resultados disponibles</p>
+      </ion-text>
+    </ng-template>
+  </ion-content>
+  
