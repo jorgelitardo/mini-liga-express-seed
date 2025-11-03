@@ -1,0 +1,163 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-11-03T01:28:57.268Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_4fcb8c0d065d4366a5f70b548f6d670f",
+      "parentId": "fld_7d4a898a810e4f43a8a86551f555d91d",
+      "modified": 1761888012807,
+      "created": 1761887934351,
+      "url": "http://127.0.0.1:8000/api/standings",
+      "name": "tabla posiciones",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [{ "name": "User-Agent", "value": "insomnia/2023.5.8" }],
+      "authentication": {},
+      "metaSortKey": -1761887934351,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_7d4a898a810e4f43a8a86551f555d91d",
+      "parentId": "wrk_dcff05a834cc4be0b43638ab487cd9a0",
+      "modified": 1761886396703,
+      "created": 1761886396703,
+      "name": "prueba",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1761886396703,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_dcff05a834cc4be0b43638ab487cd9a0",
+      "parentId": null,
+      "modified": 1727995152887,
+      "created": 1713285728377,
+      "name": "paises",
+      "description": "",
+      "scope": "design",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_599f9c3b97d54861a35b2086af48c340",
+      "parentId": "fld_7d4a898a810e4f43a8a86551f555d91d",
+      "modified": 1761888111308,
+      "created": 1761887616825,
+      "url": "http://127.0.0.1:8000/api/games",
+      "name": "crear partido",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"home_team_id\": 3,\n  \"away_team_id\": 4\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1761887616825,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_019b29124d3a4997852dd5beeb13c5bc",
+      "parentId": "fld_7d4a898a810e4f43a8a86551f555d91d",
+      "modified": 1761888130746,
+      "created": 1761887024354,
+      "url": "http://127.0.0.1:8000/api/matches/2/result",
+      "name": "ingresar score",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{ \"home_score\": 1, \"away_score\": 1 }\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1761887024354,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f391657caae74add8f27438ae577ed82",
+      "parentId": "fld_7d4a898a810e4f43a8a86551f555d91d",
+      "modified": 1761887052106,
+      "created": 1761887042290,
+      "url": "http://127.0.0.1:8000/api/teams",
+      "name": "listar teams",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [{ "name": "User-Agent", "value": "insomnia/2023.5.8" }],
+      "authentication": {},
+      "metaSortKey": -1761886712598,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_ce411f6442ae4aa282818a9e9e2df441",
+      "parentId": "fld_7d4a898a810e4f43a8a86551f555d91d",
+      "modified": 1761888094869,
+      "created": 1761886400842,
+      "url": "http://127.0.0.1:8000/api/teams",
+      "name": "crear teams",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Independiente del Valle\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1761886400842,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    }
+]
+}
